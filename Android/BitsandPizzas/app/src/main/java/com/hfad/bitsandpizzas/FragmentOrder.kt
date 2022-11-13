@@ -9,6 +9,7 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
+import com.hfad.bitsandpizzas.databinding.ActivityMainBinding
 import com.hfad.bitsandpizzas.databinding.FragmentOrderBinding
 
 /**
@@ -16,12 +17,15 @@ import com.hfad.bitsandpizzas.databinding.FragmentOrderBinding
  */
 class FragmentOrder : Fragment() {
 
+    private var _binding: FragmentOrderBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-        val binding = FragmentOrderBinding.inflate(inflater, container, false)
+        // Inflate the layout for this fragment using View binding
+        _binding = FragmentOrderBinding.inflate(inflater, container, false)
 
         binding.apply {
 
@@ -53,5 +57,10 @@ class FragmentOrder : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
